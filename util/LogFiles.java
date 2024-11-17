@@ -16,8 +16,8 @@ import com.qualcomm.robotcore.util.WebHandlerManager;
 
 import org.firstinspires.ftc.ftccommon.external.WebHandlerRegistrar;
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
-import org.firstinspires.ftc.teamcode.drive.DriveConstants;
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.drive.DriveConstants1;
+import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive1;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.drive.StandardTrackingWheelLocalizer;
 
@@ -48,31 +48,31 @@ public final class LogFiles {
         public long nsInit = System.nanoTime();
         public long nsStart, nsStop;
 
-        public double ticksPerRev = DriveConstants.TICKS_PER_REV;
-        public double maxRpm = DriveConstants.MAX_RPM;
-        public boolean runUsingEncoder = DriveConstants.RUN_USING_ENCODER;
-        public double motorP = DriveConstants.MOTOR_VELO_PID.p;
-        public double motorI = DriveConstants.MOTOR_VELO_PID.i;
-        public double motorD = DriveConstants.MOTOR_VELO_PID.d;
-        public double motorF = DriveConstants.MOTOR_VELO_PID.f;
-        public double wheelRadius = DriveConstants.WHEEL_RADIUS;
-        public double gearRatio = DriveConstants.GEAR_RATIO;
-        public double trackWidth = DriveConstants.TRACK_WIDTH;
-        public double kV = DriveConstants.kV;
-        public double kA = DriveConstants.kA;
-        public double kStatic = DriveConstants.kStatic;
-        public double maxVel = DriveConstants.MAX_VEL;
-        public double maxAccel = DriveConstants.MAX_ACCEL;
-        public double maxAngVel = DriveConstants.MAX_ANG_VEL;
-        public double maxAngAccel = DriveConstants.MAX_ANG_ACCEL;
+        public double ticksPerRev = DriveConstants1.TICKS_PER_REV;
+        public double maxRpm = DriveConstants1.MAX_RPM;
+        public boolean runUsingEncoder = DriveConstants1.RUN_USING_ENCODER;
+        public double motorP = DriveConstants1.MOTOR_VELO_PID.p;
+        public double motorI = DriveConstants1.MOTOR_VELO_PID.i;
+        public double motorD = DriveConstants1.MOTOR_VELO_PID.d;
+        public double motorF = DriveConstants1.MOTOR_VELO_PID.f;
+        public double wheelRadius = DriveConstants1.WHEEL_RADIUS;
+        public double gearRatio = DriveConstants1.GEAR_RATIO;
+        public double trackWidth = DriveConstants1.TRACK_WIDTH;
+        public double kV = DriveConstants1.kV;
+        public double kA = DriveConstants1.kA;
+        public double kStatic = DriveConstants1.kStatic;
+        public double maxVel = DriveConstants1.MAX_VEL;
+        public double maxAccel = DriveConstants1.MAX_ACCEL;
+        public double maxAngVel = DriveConstants1.MAX_ANG_VEL;
+        public double maxAngAccel = DriveConstants1.MAX_ANG_ACCEL;
 
-        public double mecTransP = SampleMecanumDrive.TRANSLATIONAL_PID.kP;
-        public double mecTransI = SampleMecanumDrive.TRANSLATIONAL_PID.kI;
-        public double mecTransD = SampleMecanumDrive.TRANSLATIONAL_PID.kD;
-        public double mecHeadingP = SampleMecanumDrive.HEADING_PID.kP;
-        public double mecHeadingI = SampleMecanumDrive.HEADING_PID.kI;
-        public double mecHeadingD = SampleMecanumDrive.HEADING_PID.kD;
-        public double mecLateralMultiplier = SampleMecanumDrive.LATERAL_MULTIPLIER;
+        public double mecTransP = SampleMecanumDrive1.TRANSLATIONAL_PID.kP;
+        public double mecTransI = SampleMecanumDrive1.TRANSLATIONAL_PID.kI;
+        public double mecTransD = SampleMecanumDrive1.TRANSLATIONAL_PID.kD;
+        public double mecHeadingP = SampleMecanumDrive1.HEADING_PID.kP;
+        public double mecHeadingI = SampleMecanumDrive1.HEADING_PID.kI;
+        public double mecHeadingD = SampleMecanumDrive1.HEADING_PID.kD;
+        public double mecLateralMultiplier = SampleMecanumDrive1.LATERAL_MULTIPLIER;
 
         public double tankAxialP = SampleTankDrive.AXIAL_PID.kP;
         public double tankAxialI = SampleTankDrive.AXIAL_PID.kI;

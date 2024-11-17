@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.autonomous.HuskyLenses;
 import org.firstinspires.ftc.teamcode.autonomous.Motors;
 import org.firstinspires.ftc.teamcode.autonomous.Servos;
 import org.firstinspires.ftc.teamcode.autonomous.Slides;
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive1;
 
 @TeleOp(name="DRIVER CONTROL", group="Linear Opmode") // @Autonomous(...) is the other common choice
 public class DRIVER_CONTROL extends LinearOpMode /*implements Runnable*/ {
@@ -22,6 +22,7 @@ public class DRIVER_CONTROL extends LinearOpMode /*implements Runnable*/ {
     public Servos orientation;
     public Servos panningServo;
     public HuskyLenses aprilLens;
+    public Motors hanging;
 
     public DcMotor fl;
     public DcMotor bl;
@@ -44,12 +45,13 @@ public class DRIVER_CONTROL extends LinearOpMode /*implements Runnable*/ {
         claw = new Servos(hardwareMap, "claw");
         orientation = new Servos(hardwareMap, "orientation");
         panningServo = new Servos(hardwareMap, "panning");
-        aprilLens = new HuskyLenses(hardwareMap, "aprillens", "tag");
+        aprilLens = new HuskyLenses(hardwareMap, "frontlens", "tag");
+        hanging = new Motors(hardwareMap, "hanging");
         fl = hardwareMap.get(DcMotor.class, "fl");
         fr = hardwareMap.get(DcMotor.class, "fr");
         bl = hardwareMap.get(DcMotor.class, "bl");
         br = hardwareMap.get(DcMotor.class, "br");
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        SampleMecanumDrive1 drive = new SampleMecanumDrive1(hardwareMap);
 
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
@@ -71,6 +73,17 @@ public class DRIVER_CONTROL extends LinearOpMode /*implements Runnable*/ {
                     )
             );
 
+            if (gamepad1.a) {
+                hanging.notRotateForward(1.0);
+            } else {
+                hanging.stopRotation();
+            }
+
+            if (gamepad1.y) {
+                hanging.notRotateBackward(1.0);
+            } else {
+                hanging.stopRotation();
+            }
 
             if (gamepad2.y) {
                 panningServo.moveBackwardMIN();

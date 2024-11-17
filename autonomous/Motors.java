@@ -31,6 +31,18 @@ public class Motors {
         }
     }
 
+    public void notRotateForward(double power) {
+        motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        setDirectionForward();
+        motor.setPower(power);
+    }
+
+    public void notRotateBackward(double power) {
+        motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        setDirectionReverse();
+        motor.setPower(power);
+    }
+
     public void rotateBackward(double power, int timeMs) {
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motor.setPower(power);
