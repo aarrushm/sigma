@@ -12,10 +12,10 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Slide extends Motor1 implements Runnable {
 
     static final int ZERO = 0;
-    static final int SLIDE_HIGHBUCKET = 2100;//2500
+    static final int SLIDE_HIGHBUCKET = 2000;//2500
     static final int PAN_HIGHBUCKET = 750;
-    static final int PAN_HIGHBAR = 1200;
-    static final int PANIGGING = 400;
+    static final int PAN_HIGHBAR = 1150;
+    static final int PANIGGING = 1250;
 
     public enum level{
 

@@ -69,15 +69,15 @@ public class SUBMERSIBLE extends LinearOpMode {
 
 
         Trajectory alligntopush1 = drive.trajectoryBuilder(firstspec.end())
-                .lineTo(new Vector2d(29, 60)
+                .lineTo(new Vector2d(36, 60)
                         ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
                 .build();
         Trajectory alligntopush2 = drive.trajectoryBuilder(alligntopush1.end())
-                .lineTo(new Vector2d(35, 17)
+                .lineTo(new Vector2d(40, 17)
                         ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
                 .build();
         Trajectory alligntopush3 = drive.trajectoryBuilder(alligntopush2.end())
-                .lineTo(new Vector2d(51, 17)
+                .lineTo(new Vector2d(55, 17)
                         ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
                 .build();
 
@@ -93,40 +93,58 @@ public class SUBMERSIBLE extends LinearOpMode {
                         ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
                 .build();
         Trajectory flafe = drive.trajectoryBuilder(backfirst.end())
-                .strafeTo(new Vector2d(6, 0)
+                .strafeTo(new Vector2d(10, 0)
                         ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
                 .build();
         Trajectory pushsecond = drive.trajectoryBuilder(flafe.end())
-                .lineTo(new Vector2d(7, 41))
+                .lineTo(new Vector2d(8, 35))
                 .build();
 
         Pose2d startcycling = new Pose2d(0, 0, Math.toRadians(90));
+        Pose2d startcycling2 = new Pose2d(-2, 0, Math.toRadians(90));
+        Pose2d startcycling3 = new Pose2d(-2, 0, Math.toRadians(90));
 
         Trajectory toBara = drive.trajectoryBuilder(startcycling)
-                .strafeTo(new Vector2d(-100, -60)
+                .strafeTo(new Vector2d(-102, -60)
                 ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
+                .build();
+        Trajectory toBarb = drive.trajectoryBuilder(startcycling2)
+                .strafeTo(new Vector2d(-94, -60)
+                        ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
+                .build();
+        Trajectory toBarc = drive.trajectoryBuilder(startcycling3)
+                .strafeTo(new Vector2d(-90, -60)
+                        ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
                 .build();
 
         Pose2d comebackpose = new Pose2d(0, 0, Math.toRadians(90));
 
         Trajectory backtopickup = drive.trajectoryBuilder(comebackpose)
-                .lineTo(new Vector2d(97, 55)
+                .lineTo(new Vector2d(97, 62)
                         ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
                 .build();
+
+        Trajectory backtopickup3 = drive.trajectoryBuilder(comebackpose)
+                .lineTo(new Vector2d(97, 62)
+                        ,SampleMecanumDrive.getVelocityConstraint(100, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), SampleMecanumDrive.getAccelerationConstraint(100) )
+                .build();
+
 
         waitForStart();
 
         if (isStopRequested()) return;
 
        //first back to drop the first specimen
+        panningServo.moveSpecificPos(.35);
         drive.followTrajectory(firstspec);
         //ENTIRE BEAUTIFUL SPECIMEN SCORING CODE
-        panningServo.moveSpecificPos(.3);
-        panningMotor.rotateForward(0.8, 300);
+        panningServo.moveSpecificPos(.35);
+        panningMotor.rotateForward(1, 300);
+        panningServo.moveSpecificPos(0);
         sleep(500);
         claw.moveBackwardMIN();
         sleep(300);
-        panningMotor.rotateForward(-0.6, 500);
+        panningMotor.rotateForward(-0.8, 500);
         panningServo.moveForwardMAX();
 
         // push in second and third specimens from ground into zone
@@ -135,7 +153,7 @@ public class SUBMERSIBLE extends LinearOpMode {
         drive.followTrajectory(alligntopush3);
         drive.setPoseEstimate(pushPose);
         drive.followTrajectory(pushfirst);
-        claw.moveSpecificPos(0.6);
+        claw.moveSpecificPos(0.3);
         drive.followTrajectory(backfirst);
         panningServo.moveSpecificPos(0.4);
         drive.followTrajectory(flafe);
@@ -147,17 +165,18 @@ public class SUBMERSIBLE extends LinearOpMode {
         orientation.moveForwardMAX();
         //go to bar hang second one
         drive.setPoseEstimate(startcycling);
-        drive.followTrajectory(toBara);
         panningServo.moveSpecificPos(.3);
-        panningMotor.rotateForward(0.8, 300);
+        drive.followTrajectory(toBara);
+        panningMotor.rotateForward(1, 400);
+        panningServo.moveSpecificPos(0);
         sleep(500);
         claw.moveBackwardMIN();
         sleep(300);
         orientation.moveBackwardMIN();
-        panningMotor.rotateForward(-0.6, 500);
+        panningMotor.rotateForward(-0.8, 500);
         panningServo.moveForwardMAX();
         drive.setPoseEstimate(comebackpose);
-        claw.moveSpecificPos(0.6);
+        claw.moveSpecificPos(0.3);
         panningServo.moveSpecificPos(0.4);
         drive.followTrajectory(backtopickup);
 
@@ -167,20 +186,22 @@ public class SUBMERSIBLE extends LinearOpMode {
         panningServo.moveBackwardMIN();
         orientation.moveForwardMAX();
         //go to bar hang second one
-        drive.setPoseEstimate(startcycling);
-        drive.followTrajectory(toBara);
+        drive.setPoseEstimate(startcycling2);
+
+        drive.followTrajectory(toBarb);
         panningServo.moveSpecificPos(.3);
-        panningMotor.rotateForward(0.8, 300);
+        panningMotor.rotateForward(1, 400);
+        panningServo.moveSpecificPos(0);
         sleep(500);
         claw.moveBackwardMIN();
         sleep(300);
         orientation.moveBackwardMIN();
-        panningMotor.rotateForward(-0.6, 500);
+        panningMotor.rotateForward(-0.8, 500);
         panningServo.moveForwardMAX();
         drive.setPoseEstimate(comebackpose);
-        claw.moveSpecificPos(0.6);
+        claw.moveSpecificPos(0.3);
         panningServo.moveSpecificPos(0.4);
-        drive.followTrajectory(backtopickup);
+        drive.followTrajectory(backtopickup3);
 
         //paste (4th block)
         claw.moveForwardMAX();
@@ -188,20 +209,19 @@ public class SUBMERSIBLE extends LinearOpMode {
         panningServo.moveBackwardMIN();
         orientation.moveForwardMAX();
         //go to bar hang second one
-        drive.setPoseEstimate(startcycling);
-        drive.followTrajectory(toBara);
+        drive.setPoseEstimate(startcycling3);
+        drive.followTrajectory(toBarc);
         panningServo.moveSpecificPos(.3);
-        panningMotor.rotateForward(0.8, 300);
+        panningMotor.rotateForward(1, 400);
+        panningServo.moveSpecificPos(0);
         sleep(500);
         claw.moveBackwardMIN();
         sleep(300);
         orientation.moveBackwardMIN();
-        panningMotor.rotateForward(-0.6, 500);
+        panningMotor.rotateForward(-0.8, 500);
         panningServo.moveForwardMAX();
         drive.setPoseEstimate(comebackpose);
-        claw.moveSpecificPos(0.6);
+        claw.moveSpecificPos(0.3);
         panningServo.moveSpecificPos(0.4);
-        drive.followTrajectory(backtopickup);
-
     }
 }
